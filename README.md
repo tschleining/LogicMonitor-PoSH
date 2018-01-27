@@ -1,2 +1,2 @@
-# LogicMonitor-PoSH
-Unofficial LogicMonitor PowerShell module
+# LogicMointorPOSH
+An unofficial PowerShell module for managing a LogicMonitor instance
