@@ -1,13 +1,23 @@
 ﻿function Get-LMServiceSDT {
         [CmdletBinding()]
          Param (
-             [Parameter(Mandatory=$false)]
+             [Parameter(Mandatory=$true)]
              [string]$Id
          )
-         Confirm-LMPortalConnection
-        $resource = 'SDT'
-        if ($Id) {
-            Get-LMData -resource $resource -Id $Id
+
+         Begin
+         {
+            Confirm-LMPortalConnection
+            $resource = 'ServiceSDTs'
+         }
+
+    Process
+        {  
+            #$data = ConvertTo-Json $PSBoundParameters
+
+            $ResourcePath = Convert-LMResourcePath -resource $resource -Id $Id
+            Get-LMData -resourcePath $ResourcePath
+
         }
-        Else { Get-LMdata -resource $resource }
+
     }

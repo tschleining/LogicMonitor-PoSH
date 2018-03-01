@@ -2,7 +2,7 @@ function Get-LMData {
         [CmdletBinding()]
         Param (
             [Parameter(ParameterSetName="Resource", Mandatory=$true)]
-            $Resource,
+            $ResourcePath,
             [Parameter(ParameterSetName="Resource", Mandatory=$false)]
             [Parameter(ParameterSetName="Id", Mandatory=$false)]
             $Id
@@ -11,23 +11,23 @@ function Get-LMData {
         Begin
         {
             $httpVerb = "GET"
-            $ResourcePath = Convert-LMResourcePath -resource $resource
+            #$ResourcePath = Convert-LMResourcePath -resource $resource
 
             If ($data) {
-                $requestVars = $httpVerb + $epoch + $data + $resourcePath
+                $requestVars = $httpVerb + $epoch + $data + $ResourcePath
             }
-            Else { $requestVars = $httpVerb + $epoch + $resourcePath }
+            Else { $requestVars = $httpVerb + $epoch + $ResourcePath }
         }
         Process
         {
-            if ($Id) {
-                $FullResourcePath = $ResourcePath + '/' + $Id
-            }
-            else { $FullResourcePath = $ResourcePath}
+            # if ($Id) {
+            #     $FullResourcePath = $ResourcePath + '/' + $Id
+            # }
+            # else { $FullResourcePath = $ResourcePath}
 
-            $url = $Global:LogicMonitor.restEndpoint + $FullResourcePath
+            $url = $Global:LogicMonitor.restEndpoint + $ResourcePath
             [string]$epoch = [Math]::Round((New-TimeSpan -start (Get-Date -Date "1/1/1970") -end (Get-Date).ToUniversalTime()).TotalMilliseconds)
-            $requestVars = $httpVerb + $epoch + $FullResourcePath
+            $requestVars = $httpVerb + $epoch + $ResourcePath
 
             $hmac = New-Object System.Security.Cryptography.HMACSHA256
             $hmac.Key = [Text.Encoding]::UTF8.GetBytes($Global:LogicMonitor.accessKey)

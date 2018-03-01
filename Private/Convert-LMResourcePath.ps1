@@ -2,7 +2,7 @@ function Convert-LMResourcePath {
         [CmdletBinding()]
         Param (
             [Parameter(Mandatory=$true)]
-            [ValidateSet("SDT", "APIToken", "OpsNotes", "Alerts", "AuditLogs", "Collectors", "CollectorGroups", "UnmonitoredDevices", "Devices", "DeviceGroups", "Services", "Instances")]
+            [ValidateSet("SDT", "APIToken", "OpsNotes", "Alerts", "AuditLogs", "Collectors", "CollectorGroups", "UnmonitoredDevices", "Devices", "DeviceGroups", "Services", "Instances", "ServiceSDTs")]
             [string]
             $resource
         )
@@ -35,6 +35,21 @@ function Convert-LMResourcePath {
                     $paramDictionary.Add("deviceDatasourceId", $dynParam2)
                     return $paramDictionary
                 }
+
+            if ($resource -eq "ServiceSDTs")
+                {
+                    $attributes = new-object System.Management.Automation.ParameterAttribute
+                    $attributes.ParameterSetName = "__ServiceSDTs"
+                    $attributes.Mandatory = $true
+                    $attributeCollection = new-object -Type System.Collections.ObjectModel.Collection[System.Attribute]
+                    $attributeCollection.Add($attributes)
+
+                    $dynParam1 = new-object -Type System.Management.Automation.RuntimeDefinedParameter("Id", [int], $attributeCollection)
+
+                    $paramDictionary = new-object -Type System.Management.Automation.RuntimeDefinedParameterDictionary
+                    $paramDictionary.Add("Id", $dynParam1)
+                    return $paramDictionary
+                }
         }
 
         Begin {
@@ -51,6 +66,7 @@ function Convert-LMResourcePath {
             "Devices" = "/device/devices";
             "DeviceGroups" = "/device/groups";
             "Services" = "/service/services"
+            "ServiceSDTs" = "/service/services/{id}/sdts"
             }
         }
 
@@ -59,6 +75,11 @@ function Convert-LMResourcePath {
                 $ResourcePath = $ResourceList[$resource]
                 $ResourcePath = $ResourcePath -replace "{deviceId}", $PSBoundParameters["deviceId"]
                 $ResourcePath = $ResourcePath -replace "{deviceDatasourceId}", $PSBoundParameters["deviceDataSourceId"]
+                return $ResourcePath
+            }
+            if ($resource -eq "ServiceSDTs") {
+                $ResourcePath = $ResourceList[$resource]
+                $ResourcePath = $ResourcePath -replace "{id}", $PSBoundParameters["Id"]
                 return $ResourcePath
             }
             else {
