@@ -57,7 +57,11 @@
                 #Convert all the local function parameters to JSON
                 $data = ConvertTo-Json $PSBoundParameters
                 #write-host $data
-                Submit-LMData -resource $resource -Data $data
+                $ResourcePath = Convert-LMResourcePath -resource $resource
+                Submit-LMData -resourcePath $ResourcePath -Data $data
+                #$collectors.data.items | select id,hostname,collectorgroupname,isdown,numberofhosts
             }
+
+            
     
 }
