@@ -1,4 +1,4 @@
-﻿function Add-LMDeviceRepeatingeSDT
+﻿function Add-LMDeviceRepeatingSDT
     {
         [CmdletBinding()]
         Param (
