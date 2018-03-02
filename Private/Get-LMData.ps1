@@ -20,14 +20,14 @@ function Get-LMData {
         }
         Process
         {
-            # if ($Id) {
-            #     $FullResourcePath = $ResourcePath + '/' + $Id
-            # }
-            # else { $FullResourcePath = $ResourcePath}
+             if ($Id) {
+                 $FullResourcePath = $ResourcePath + '/' + $Id
+             }
+             else { $FullResourcePath = $ResourcePath}
 
-            $url = $Global:LogicMonitor.restEndpoint + $ResourcePath
+            $url = $Global:LogicMonitor.restEndpoint + $FullResourcePath
             [string]$epoch = [Math]::Round((New-TimeSpan -start (Get-Date -Date "1/1/1970") -end (Get-Date).ToUniversalTime()).TotalMilliseconds)
-            $requestVars = $httpVerb + $epoch + $ResourcePath
+            $requestVars = $httpVerb + $epoch + $FullResourcePath
 
             $hmac = New-Object System.Security.Cryptography.HMACSHA256
             $hmac.Key = [Text.Encoding]::UTF8.GetBytes($Global:LogicMonitor.accessKey)

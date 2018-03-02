@@ -4,5 +4,15 @@
         )
 
         Confirm-LMPortalConnection
-        $response = send-LMdata -httpVerb GET -resource 'OpsNotes' 
+        $resourcePath = Convert-LMResourcePath -resource $resource
+        if ($Id) {
+            $data = Get-LMData -resourcePath $resourcePath -Id $Id
+            $returnData = Convert-LMReturnData -data $data
+            return $returnData
+        }
+        else {
+            $data = Get-LMData -ResourcePath $resourcePath
+            $returnData = Convert-LMReturnData -data $data
+            return $returnData
+        }
 }

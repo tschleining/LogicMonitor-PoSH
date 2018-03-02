@@ -16,7 +16,8 @@
         $LMglobal.add('accessKey', $accessKey)
         $Global:LogicMonitor = $LMglobal
 
-        $response = Get-LMdata -resource 'APIToken'
+        $resourcePath = Convert-LMResourcePath  -resource 'APIToken'
+        $response = Get-LMdata -resourcePath $resourcePath
 
         $status = $response.status
         $body = $response.data

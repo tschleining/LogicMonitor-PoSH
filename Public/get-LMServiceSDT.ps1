@@ -13,10 +13,10 @@
 
     Process
         {  
-            #$data = ConvertTo-Json $PSBoundParameters
-
             $ResourcePath = Convert-LMResourcePath -resource $resource -Id $Id
-            Get-LMData -resourcePath $ResourcePath
+            $data = Get-LMData -ResourcePath $resourcePath
+            $returnData = Convert-LMReturnData -data $data
+            return $returnData
 
         }
 

@@ -7,8 +7,15 @@ function Get-LMUnmonitoredDevice {
         Confirm-LMPortalConnection
 
         $resource = 'UnmonitoredDevices'
+        $resourcePath = Convert-LMResourcePath -resource $resource
         if ($Id) {
-            Get-LMData -resource $resource -Id $Id
+            $data = Get-LMData -resourcePath $resourcePath -Id $Id
+            $returnData = Convert-LMReturnData -data $data
+            return $returnData
         }
-        Else { Get-LMdata -resource $resource }
+        else {
+            $data = Get-LMData -ResourcePath $resourcePath
+            $returnData = Convert-LMReturnData -data $data
+            return $returnData
+        }
     }
