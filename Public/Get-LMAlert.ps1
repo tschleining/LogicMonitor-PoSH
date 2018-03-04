@@ -9,6 +9,7 @@ function Get-LMAlert {
          {
             Confirm-LMPortalConnection
             $resource = 'Alerts'
+            #$properties = @("id", "")
          }
 
     Process
@@ -17,13 +18,15 @@ function Get-LMAlert {
             $resourcePath = Convert-LMResourcePath -resource $resource
             if ($Id) {
                 $data = Get-LMData -resourcePath $resourcePath -Id $Id
-                $returnData = Convert-LMReturnData -data $data
-                return $returnData
+                $responseData = Convert-LMResponseData -data $data
+                #$returnData = Format-LMReturnData -data $responseData -properties $properties
+                return responseData
             }
             else {
                 $data = Get-LMData -ResourcePath $resourcePath
-                $returnData = Convert-LMReturnData -data $data
-                return $returnData
+                $responseData = Convert-LMResponseData -data $data
+                #$returnData = Format-LMReturnData -data $responseData -properties $properties
+                return responseData
             }
 
         }

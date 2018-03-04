@@ -40,17 +40,15 @@ function Get-LMData {
             $headers.Add("Authorization",$auth)
             $headers.Add("Content-Type",'application/json')
 
-                            try
-                                {
-                                    $response = Invoke-RestMethod -Uri $url -Method $httpVerb -Header $headers
-                                }
 
-                            catch
-                                {
-                                    write-host 'something went wrong'
-                                    write-host $Error
-                                }
+            $response = Invoke-RestMethod -Uri $url -Method $httpVerb -Header $headers
+            if ($response.status -ne '200') {
+                throw $response.errmsg
+            }
+            
+            else {
+                return $response
+            }
 
-            return $response
         }
 }

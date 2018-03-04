@@ -11,12 +11,16 @@ function Get-LMDevice {
         $resourcePath = Convert-LMResourcePath -resource $resource
         if ($Id) {
             $data = Get-LMData -resourcePath $resourcePath -Id $Id
-            $returnData = Convert-LMReturnData -data $data
-            return $returnData
+            $responseData = Convert-LMResponseData -data $data
+            return $responseData
+        }
+        #This needs to either build query params or call a private function that returns the proper string
+        if ($name) {
+            $data = Get-LMData -ResourcePath 
         }
         else {
             $data = Get-LMData -ResourcePath $resourcePath
-            $returnData = Convert-LMReturnData -data $data
-            return $returnData
+            $responseData = Convert-LMResponseData -data $data
+            return $responseData
         }
     }

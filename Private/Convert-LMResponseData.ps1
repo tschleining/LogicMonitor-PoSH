@@ -1,4 +1,4 @@
-function Convert-LMReturnData {
+function Convert-LMResponseData {
         [CmdletBinding()]
         Param (
             [Parameter(Mandatory=$true)]

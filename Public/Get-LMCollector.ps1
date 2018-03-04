@@ -4,17 +4,26 @@ function Get-LMCollector {
              [Parameter(Mandatory=$false)]
              [string]$Id
          )
-         Confirm-LMPortalConnection
-        $resource = 'Collectors'
-        $resourcePath = Convert-LMResourcePath -resource $resource
-        if ($Id) {
-            $data = Get-LMData -resourcePath $resourcePath -Id $Id
-            $returnData = Convert-LMReturnData -data $data
-            return $returnData
+        begin {
+            Confirm-LMPortalConnection
+            $resource = 'Collectors'
+            $resourcePath = Convert-LMResourcePath -resource $resource
+            $properties = @("id", "hostname","collectorSize", "numberOfHosts", "collectorGroupName")
         }
-        else {
-            $data = Get-LMData -ResourcePath $resourcePath
-            $returnData = Convert-LMReturnData -data $data
-            return $returnData
+
+        process {
+            if ($Id) {
+                $data = Get-LMData -resourcePath $resourcePath -Id $Id
+                $responseData = Convert-LMResponseData -data $data
+                $returnData = Format-LMReturnData -data $responseData -properties $properties
+                return $returnData
+            }
+            else {
+                $data = Get-LMData -ResourcePath $resourcePath
+                $responseData = Convert-LMResponseData -data $data
+                $returnData = Format-LMReturnData -data $responseData -properties $properties
+                return $returnData
+            }
         }
+
     }

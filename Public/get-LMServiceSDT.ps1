@@ -15,8 +15,8 @@
         {  
             $ResourcePath = Convert-LMResourcePath -resource $resource -Id $Id
             $data = Get-LMData -ResourcePath $resourcePath
-            $returnData = Convert-LMReturnData -data $data
-            return $returnData
+            $responseData = Convert-LMResponseData -data $data
+            return $responseData
 
         }
 

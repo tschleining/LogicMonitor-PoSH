@@ -4,15 +4,16 @@
         )
 
         Confirm-LMPortalConnection
+        $resource = 'OpsNotes'
         $resourcePath = Convert-LMResourcePath -resource $resource
         if ($Id) {
             $data = Get-LMData -resourcePath $resourcePath -Id $Id
-            $returnData = Convert-LMReturnData -data $data
-            return $returnData
+            $responseData = Convert-LMResponseData -data $data
+            return $responseData
         }
         else {
             $data = Get-LMData -ResourcePath $resourcePath
-            $returnData = Convert-LMReturnData -data $data
-            return $returnData
+            $responseData = Convert-LMResponseData -data $data
+            return $responseData
         }
 }

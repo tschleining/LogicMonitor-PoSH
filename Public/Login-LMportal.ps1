@@ -6,10 +6,10 @@
             [Parameter(Mandatory=$true)]
             [string]$accessKey,
             [Parameter(Mandatory=$true)]
-            [string]$company
+            [string]$accountName
         )
 
-        $baseURL = "https://" + $company + ".logicmonitor.com/santaba/rest"
+        $baseURL = "https://" + $accountName + ".logicmonitor.com/santaba/rest"
         $LMglobal = @{}
         $LMglobal.add('restEndpoint', $baseURL)
         $LMglobal.add('accessID', $accessID)
