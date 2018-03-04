@@ -1,3 +1,17 @@
+    <#
+            .SYNOPSIS
+            Returns a list or specific Unmonitored Devices
+            .DESCRIPTION
+            LogicMonitor documentation regarding Unmonitored Netscan Devices can be found at https://www.logicmonitor.com/support/devices/devices-page-overview/unmonitored-netscan-devices/
+            .EXAMPLE
+            Get-LMUnmonitoredDevice
+            .EXAMPLE
+            Get-LMUnmonitoredDevice -Id 10
+            .PARAMETER Id
+            ID of the Unmonitored Device
+            .Outputs
+            PSCustomObject
+          #>
 function Get-LMUnmonitoredDevice {
         [CmdletBinding()]
          Param (

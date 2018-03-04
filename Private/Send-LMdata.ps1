@@ -1,4 +1,4 @@
-﻿function Send-LMdata
+﻿function Send-LMData
     {
         [CmdletBinding()]
         Param (

@@ -1,3 +1,17 @@
+    <#
+            .SYNOPSIS
+            Returns a list or specific Device
+            .DESCRIPTION
+            LogicMonitor documentation regarding Devices can be found at https://www.logicmonitor.com/support/devices/adding-managing-devices/
+            .EXAMPLE
+            Get-LMDevice
+            .EXAMPLE
+            Get-LMDevice -Id 10
+            .PARAMETER Id
+            ID of the Device
+            .Outputs
+            PSCustomObject
+          #>
 function Get-LMDevice {
         [CmdletBinding()]
          Param (

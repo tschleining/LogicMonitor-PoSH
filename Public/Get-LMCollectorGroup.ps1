@@ -1,3 +1,17 @@
+    <#
+            .SYNOPSIS
+            Returns a list or specific Collector Group
+            .DESCRIPTION
+            LogicMonitor documentation regarding Collector Groups can be found at https://www.logicmonitor.com/support/settings/collectors/collector-groups/
+            .EXAMPLE
+            Get-LMCollectorGroup
+            .EXAMPLE
+            Get-LMCollectorGroup -Id 10
+            .PARAMETER Id
+            ID of the Collector Group
+            .Outputs
+            PSCustomObject
+          #>
 function Get-LMCollectorGroup {
         [CmdletBinding()]
          Param (

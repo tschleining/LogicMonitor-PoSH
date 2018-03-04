@@ -3,7 +3,7 @@
         }
 
         else {
-                clear
+                clear-host
                 write-warning "No connection to LogicMonitor API.  Prior to running LM module comands use Login-LMPortal
                 "
                 Login-LMportal

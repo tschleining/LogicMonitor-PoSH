@@ -1,3 +1,17 @@
+    <#
+            .SYNOPSIS
+            Returns a list or specific Services
+            .DESCRIPTION
+            LogicMonitor documentation regarding Services can be found at https://www.logicmonitor.com/support/services/
+            .EXAMPLE
+            Get-LMService
+            .EXAMPLE
+            Get-LMService -Id 10
+            .PARAMETER Id
+            ID of the Service
+            .Outputs
+            PSCustomObject
+          #>
 function Get-LMService {
         [CmdletBinding()]
          Param (
