@@ -5,7 +5,10 @@ function Get-LMData {
             $ResourcePath,
             [Parameter(ParameterSetName="Resource", Mandatory=$false)]
             [Parameter(ParameterSetName="Id", Mandatory=$false)]
-            $Id
+            $Id,
+            [Parameter(ParameterSetName="Resource", Mandatory=$false)]
+            [Parameter(ParameterSetName="Id", Mandatory=$false)]
+            $queryParams
         )
 
         Begin
@@ -25,7 +28,7 @@ function Get-LMData {
              }
              else { $FullResourcePath = $ResourcePath}
 
-            $url = $Global:LogicMonitor.restEndpoint + $FullResourcePath
+            $url = $Global:LogicMonitor.restEndpoint + $FullResourcePath + $queryParams
             [string]$epoch = [Math]::Round((New-TimeSpan -start (Get-Date -Date "1/1/1970") -end (Get-Date).ToUniversalTime()).TotalMilliseconds)
             $requestVars = $httpVerb + $epoch + $FullResourcePath
 

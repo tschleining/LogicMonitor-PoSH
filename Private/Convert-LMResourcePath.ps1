@@ -2,7 +2,7 @@ function Convert-LMResourcePath {
         [CmdletBinding()]
         Param (
             [Parameter(Mandatory=$true)]
-            [ValidateSet("SDT", "APIToken", "OpsNotes", "Alerts", "AuditLogs", "Collectors", "CollectorGroups", "UnmonitoredDevices", "Devices", "DeviceGroups", "Services", "Instances", "ServiceSDTs")]
+            [ValidateSet("SDT", "APIToken", "OpsNotes", "Alerts", "AuditLogs", "Collectors", "CollectorGroups", "UnmonitoredDevices", "Devices", "DeviceGroups", "Services", "Instances", "ServiceSDTs", "Users", "Roles")]
             [string]
             $resource
         )
@@ -66,7 +66,9 @@ function Convert-LMResourcePath {
             "Devices" = "/device/devices";
             "DeviceGroups" = "/device/groups";
             "Services" = "/service/services"
-            "ServiceSDTs" = "/service/services/{id}/sdts"
+            "ServiceSDTs" = "/service/services/{id}/sdts";
+            "Users" = "/setting/admins";
+            "Roles" = "/setting/roles"
             }
         }
 

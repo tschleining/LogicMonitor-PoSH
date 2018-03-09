@@ -9,26 +9,34 @@
             Get-LMServiceSDT -Id 10
             .PARAMETER Id
             ID of the Service Scheduled Down Time
+            .PARAMETER returnSize
+            Maximum amount of returned objects.  Default is 100.
+            .PARAMETER filters
+            Filters responses the API will return.  Useful for reducing API response size and time.
             .Outputs
             PSCustomObject
           #>
 function Get-LMServiceSDT {
-        [CmdletBinding()]
+        [CmdletBinding(DefaultParameterSetName="All")]
          Param (
-             [Parameter(Mandatory=$true)]
-             [string]$Id
+            [Parameter(ParameterSetName="Id", Mandatory=$true)]
+            [string]$Id,
+            [Parameter(ParameterSetName="filters", Mandatory=$false)]
+            [string]$filters,
+            [Parameter(ParameterSetName="filters", Mandatory=$false)]
+            [int]$returnSize=100
          )
 
-         Begin
-         {
+        begin
+        {
             Confirm-LMPortalConnection
             $resource = 'ServiceSDTs'
-         }
+        }
 
-    Process
+        process
         {  
-            $ResourcePath = Convert-LMResourcePath -resource $resource -Id $Id
-            $data = Get-LMData -ResourcePath $resourcePath
+            $resourcePath = Convert-LMResourcePath -resource $resource -Id $Id
+            $data = Get-LMData -resourcePath $resourcePath -Id $Id
             $responseData = Convert-LMResponseData -data $data
             return $responseData
 
