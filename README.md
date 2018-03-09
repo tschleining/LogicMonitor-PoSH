@@ -1,4 +1,4 @@
-# LogicMointorPOSH
+# LogicMonitorPOSH
 An unofficial PowerShell module for managing a LogicMonitor instance
 
 # Obtaining API Keys
