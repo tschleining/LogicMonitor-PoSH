@@ -58,7 +58,7 @@
                 $data = ConvertTo-Json $PSBoundParameters
                 #write-host $data
                 $ResourcePath = Convert-LMResourcePath -resource $resource
-                Submit-LMData -resourcePath $ResourcePath -Data $data
+                Submit-LMData -resourcePath $ResourcePath -Data $data -httpVerb POST
                 #$collectors.data.items | select id,hostname,collectorgroupname,isdown,numberofhosts
             }
 

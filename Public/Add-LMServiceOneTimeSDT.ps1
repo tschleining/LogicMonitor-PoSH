@@ -25,5 +25,5 @@
 
         $data = '{"sdtType":' + $sdtType + ',"type":"' + $type + '","deviceId":' + $DeviceID + ',"startDateTime":' + $startDateEpoch + ',"endDateTime":' + $endDateEpoch + '}'
 
-        Submit-LMdata -resource $resource -Data $data
+        Submit-LMdata -resource $resource -Data $data -httpVerb POST
     }

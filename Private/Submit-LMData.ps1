@@ -6,12 +6,16 @@ function Submit-LMdata
             $data,
             [Parameter(Mandatory=$true)]
             [string]
-            $resourcePath
+            $resourcePath,
+            [Parameter(Mandatory=$true)]
+            [ValidateSet("POST", "PUT", "DELETE")]
+            [string]
+            $httpVerb
         )
 
         Begin
             {
-                $httpVerb = "POST"
+                #$httpVerb = "POST"
             }
 
         Process
@@ -38,21 +42,28 @@ function Submit-LMdata
                 $headers.Add("Authorization",$auth)
                 $headers.Add("Content-Type",'application/json')
 
-                try
-                    {
-                        #send data in body if data is necessary for request
-                        if ($data) {
-                            $response = Invoke-RestMethod -Uri $url -Method $httpVerb -Headers $headers -Body $data
-                        }
-                                
-                        else { $response = Invoke-RestMethod -Uri $url -Method $httpVerb -Header $headers }
+                #send data in body if data is necessary for request
+                if ($data) {
+                    $response = Invoke-RestMethod -Uri $url -Method $httpVerb -Header $headers -Body $data
+                    if ($response.status -ne '200') {
+                        throw $response.errmsg
                     }
 
-                    catch
-                        {
-                            write-host 'something went wrong'
-                            write-host $Error
-                        }
+                    else {
+                        return $response
+                    }
+                }
+
+                else {
+                    $response = Invoke-RestMethod -Uri $url -Method $httpVerb -Header $headers
+                    if ($response.status -ne '200') {
+                        throw $response.errmsg
+                    }
+                    
+                    else {
+                        return $response
+                    }
+                }
 
                 return $response
             }

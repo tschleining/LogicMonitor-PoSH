@@ -33,7 +33,7 @@ function Add-LMDatasourceInstance {
             $data = ConvertTo-Json $PSBoundParameters
             #Get relative resource path to build complete URI
             $ResourcePath = Convert-LMResourcePath -resource $resource -deviceId $deviceId -deviceDatasourceId $deviceDatasourceId
-            Submit-LMData -Data $data -resourcePath $ResourcePath
+            Submit-LMData -Data $data -resourcePath $ResourcePath -httpVerb POST
         }
 
 }

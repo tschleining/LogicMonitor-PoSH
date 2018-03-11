@@ -133,7 +133,7 @@
                      }
                 }
 
-                Submit-LMdata -resource $resource -Data $data
+                Submit-LMdata -resource $resource -Data $data -httpVerb POST
             }
 
 

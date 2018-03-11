@@ -31,7 +31,7 @@ function Get-LMCollector {
             $resource = 'Collectors'
             $resourcePath = Convert-LMResourcePath -resource $resource
             $queryParams = Add-LMQueryParams -size $returnSize -filters $filters
-            $properties = @("id", "hostname","collectorSize", "numberOfHosts", "collectorGroupName")
+            $properties = @("id", "hostname","collectorSize", "numberOfHosts", "collectorGroupName", "description", "backupAgentId", "enableFailBack", "resendIval", "suppressAlertClear", "escalatingChainId", "collectorGroupId", "enableFailOverOnCollectorDevice", "needAutoCreateCollectorDevice")
         }
 
         process {
