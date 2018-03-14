@@ -1,6 +1,62 @@
 # LogicMonitorPOSH
 An unofficial PowerShell module for managing a LogicMonitor instance
 
+# Current Cmdlets
+* Add-LMAccount
+* Add-LMCollector
+* Add-LMCollectorGroup
+* Add-LMDatasourceInstance
+* Add-LMDevice
+* Add-LMDeviceOneTimeSDT
+* Add-LMAccount
+* Add-LMCollector
+* Add-LMCollectorGroup
+* Add-LMDatasourceInstance
+* Add-LMDevice
+* Add-LMDeviceOneTimeSDT
+* Add-LMDeviceRepeatingSDT
+* Add-LMServiceOneTimeSDT
+* Confirm-LMAlert
+* Get-LMAlert
+* Get-LMAuditLog
+* Get-LMCollector
+* Get-LMCollectorGroup
+* Get-LMDevice
+* Get-LMDeviceGroup
+* Get-LMDeviceProperties
+* Get-LMOpsNote
+* Get-LMRole
+* Get-LMService
+* Get-LMServiceSDT
+* Get-LMSMCheckPoint
+* Get-LMUnmonitoredDevice
+* Get-LMUser
+* Remove-LMCollector
+* Remove-LMCollectorGroup
+* Update-LMCollector
+* Update-LMCollectorGroup
+* Add-LMDeviceRepeatingSDT
+* Add-LMServiceOneTimeSDT
+* Confirm-LMAlert
+* Get-LMAlert
+* Get-LMAuditLog
+* Get-LMCollector
+* Get-LMCollectorGroup
+* Get-LMDevice
+* Get-LMDeviceGroup
+* Get-LMDeviceProperties
+* Get-LMOpsNote
+* Get-LMRole
+* Get-LMService
+* Get-LMServiceSDT
+* Get-LMSMCheckPoint
+* Get-LMUnmonitoredDevice
+* Get-LMUser
+* Remove-LMCollector
+* Remove-LMCollectorGroup
+* Update-LMCollector
+* Update-LMCollectorGroup
+
 # Installing the Module
 There are a couple of locations the module can be installed.
 

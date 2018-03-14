@@ -41,10 +41,13 @@ function Get-LMDevice {
                 $responseData = Convert-LMResponseData -data $data
                 return $responseData
             }
+            
+            else {
+                $data = Get-LMData -ResourcePath $resourcePath -queryParams $queryParams
+                $responseData = Convert-LMResponseData -data $data
+                return $responseData
+            }
 
-            $data = Get-LMData -ResourcePath $resourcePath -queryParams $queryParams
-            $responseData = Convert-LMResponseData -data $data
-            return $responseData
         }
 
     }

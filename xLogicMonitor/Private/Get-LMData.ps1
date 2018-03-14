@@ -14,12 +14,6 @@ function Get-LMData {
         Begin
         {
             $httpVerb = "GET"
-            #$ResourcePath = Convert-LMResourcePath -resource $resource
-
-            If ($data) {
-                $requestVars = $httpVerb + $epoch + $data + $ResourcePath
-            }
-            Else { $requestVars = $httpVerb + $epoch + $ResourcePath }
         }
         Process
         {
