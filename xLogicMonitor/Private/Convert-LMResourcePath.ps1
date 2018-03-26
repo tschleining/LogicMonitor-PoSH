@@ -2,7 +2,7 @@ function Convert-LMResourcePath {
         [CmdletBinding()]
         Param (
             [Parameter(Mandatory=$true)]
-            [ValidateSet("SDT", "APIToken", "OpsNotes", "Alerts", "AuditLogs", "Collectors", "CollectorGroups", "UnmonitoredDevices", "Devices", "DeviceGroups", "Services", "Instances", "ServiceSDTs", "Users", "Roles", "SMCheckPoint", "DeviceProperties")]
+            [ValidateSet("SDT", "APIToken", "OpsNotes", "Alerts", "AuditLogs", "Collectors", "CollectorGroups", "UnmonitoredDevices", "Devices", "DeviceGroups", "Services", "Instances", "ServiceSDTs", "Users", "Roles", "SMCheckPoint", "DeviceProperties", "CollectorInstallers")]
             [string]
             $resource
         )
@@ -65,6 +65,21 @@ function Convert-LMResourcePath {
                     $paramDictionary.Add("deviceId", $dynParam1)
                     return $paramDictionary
                 }
+
+                if ($resource -eq "CollectorInstallers")
+                {
+                    $attributes = new-object System.Management.Automation.ParameterAttribute
+                    $attributes.ParameterSetName = "__CollectorInstallers"
+                    $attributes.Mandatory = $true
+                    $attributeCollection = new-object -Type System.Collections.ObjectModel.Collection[System.Attribute]
+                    $attributeCollection.Add($attributes)
+
+                    $dynParam1 = new-object -Type System.Management.Automation.RuntimeDefinedParameter("Id", [int], $attributeCollection)
+
+                    $paramDictionary = new-object -Type System.Management.Automation.RuntimeDefinedParameterDictionary
+                    $paramDictionary.Add("Id", $dynParam1)
+                    return $paramDictionary
+                }
         }
 
         Begin {
@@ -76,6 +91,7 @@ function Convert-LMResourcePath {
             "AuditLogs" = "/setting/accesslogs";
             "Collectors" = "/setting/collectors";
             "CollectorGroups" = "/setting/collectors/groups";
+            "CollectorInstallers" = "/setting/collectors/{id}/installers/"
             "UnmonitoredDevices" = "/device/unmonitoreddevices";
             "Instances" = "/device/devices/{deviceId}/devicedatasources/{deviceDatasourceId}/instances";
             "Devices" = "/device/devices";
@@ -106,6 +122,12 @@ function Convert-LMResourcePath {
                 $ResourcePath = $ResourcePath -replace "{deviceId}", $PSBoundParameters["deviceId"]
                 return $ResourcePath
             }
+            if ($resource -eq "CollectorInstallers") {
+                $ResourcePath = $ResourceList[$resource]
+                $ResourcePath = $ResourcePath -replace "{id}", $PSBoundParameters["Id"]
+                return $ResourcePath
+            }
+
             else {
             $ResourcePath = $ResourceList[$resource]
             return $ResourcePath
