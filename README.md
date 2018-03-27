@@ -2,8 +2,9 @@
 An unofficial PowerShell module for managing a LogicMonitor instance
 
 # Current Cmdlets
-* Add-LMCollector
 * Add-LMAccount
+* Add-LMAlertNote
+* Add-LMCollector
 * Add-LMCollectorGroup
 * Add-LMDatasourceInstance
 * Add-LMDevice
@@ -11,12 +12,15 @@ An unofficial PowerShell module for managing a LogicMonitor instance
 * Add-LMDeviceRepeatingSDT
 * Add-LMServiceOneTimeSDT
 * Confirm-LMAlert
+* Confirm-LMCollectorDown
 * Get-LMAlert
 * Get-LMAuditLog
 * Get-LMCollector
 * Get-LMCollectorGroup
+* Get-LMCollectorInstaller
 * Get-LMDevice
 * Get-LMDeviceGroup
+* Get-LMDeviceGroupResources
 * Get-LMDeviceProperties
 * Get-LMOpsNote
 * Get-LMRole
