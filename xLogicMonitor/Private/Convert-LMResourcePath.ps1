@@ -2,7 +2,7 @@ function Convert-LMResourcePath {
         [CmdletBinding()]
         Param (
             [Parameter(Mandatory=$true)]
-            [ValidateSet("SDT", "APIToken", "OpsNotes", "Alerts", "AuditLogs", "Collectors", "CollectorGroups", "UnmonitoredDevices", "Devices", "DeviceGroups", "Services", "Instances", "ServiceSDTs", "Users", "Roles", "SMCheckPoint", "DeviceProperties", "CollectorInstallers")]
+            [ValidateSet("SDT", "APIToken", "OpsNotes", "Alerts", "AuditLogs", "Collectors", "CollectorGroups", "UnmonitoredDevices", "Devices", "DeviceGroups", "Services", "Instances", "ServiceSDTs", "Users", "Roles", "SMCheckPoint", "DeviceProperties", "CollectorInstallers", "AlertNote", "CollectorDown", "DeviceGroupResources")]
             [string]
             $resource
         )
@@ -80,6 +80,51 @@ function Convert-LMResourcePath {
                     $paramDictionary.Add("Id", $dynParam1)
                     return $paramDictionary
                 }
+
+                if ($resource -eq "AlertNote")
+                {
+                    $attributes = new-object System.Management.Automation.ParameterAttribute
+                    $attributes.ParameterSetName = "__AlertNote"
+                    $attributes.Mandatory = $true
+                    $attributeCollection = new-object -Type System.Collections.ObjectModel.Collection[System.Attribute]
+                    $attributeCollection.Add($attributes)
+
+                    $dynParam1 = new-object -Type System.Management.Automation.RuntimeDefinedParameter("Id", [string], $attributeCollection)
+
+                    $paramDictionary = new-object -Type System.Management.Automation.RuntimeDefinedParameterDictionary
+                    $paramDictionary.Add("Id", $dynParam1)
+                    return $paramDictionary
+                }
+
+                if ($resource -eq "CollectorDown")
+                {
+                    $attributes = new-object System.Management.Automation.ParameterAttribute
+                    $attributes.ParameterSetName = "__CollectorDown"
+                    $attributes.Mandatory = $true
+                    $attributeCollection = new-object -Type System.Collections.ObjectModel.Collection[System.Attribute]
+                    $attributeCollection.Add($attributes)
+
+                    $dynParam1 = new-object -Type System.Management.Automation.RuntimeDefinedParameter("Id", [int], $attributeCollection)
+
+                    $paramDictionary = new-object -Type System.Management.Automation.RuntimeDefinedParameterDictionary
+                    $paramDictionary.Add("Id", $dynParam1)
+                    return $paramDictionary
+                }
+
+                if ($resource -eq "DeviceGroupResources")
+                {
+                    $attributes = new-object System.Management.Automation.ParameterAttribute
+                    $attributes.ParameterSetName = "__DeviceGroupResources"
+                    $attributes.Mandatory = $true
+                    $attributeCollection = new-object -Type System.Collections.ObjectModel.Collection[System.Attribute]
+                    $attributeCollection.Add($attributes)
+
+                    $dynParam1 = new-object -Type System.Management.Automation.RuntimeDefinedParameter("Id", [int], $attributeCollection)
+
+                    $paramDictionary = new-object -Type System.Management.Automation.RuntimeDefinedParameterDictionary
+                    $paramDictionary.Add("Id", $dynParam1)
+                    return $paramDictionary
+                }
         }
 
         Begin {
@@ -102,6 +147,9 @@ function Convert-LMResourcePath {
             "Roles" = "/setting/roles";
             "SMCheckPoint" = "/service/smcheckpoints";
             "DeviceProperties" = "/device/devices/{deviceID}/properties";
+            "AlertNote" = "/alert/alerts/{id}/note";
+            "CollectorDown" = "/setting/collectors/{id}/ackdown";
+            "DeviceGroupResources" = "/device/groups/{id}/devices"
             }
         }
 
@@ -123,6 +171,21 @@ function Convert-LMResourcePath {
                 return $ResourcePath
             }
             if ($resource -eq "CollectorInstallers") {
+                $ResourcePath = $ResourceList[$resource]
+                $ResourcePath = $ResourcePath -replace "{id}", $PSBoundParameters["Id"]
+                return $ResourcePath
+            }
+            if ($resource -eq "AlertNote") {
+                $ResourcePath = $ResourceList[$resource]
+                $ResourcePath = $ResourcePath -replace "{id}", $PSBoundParameters["Id"]
+                return $ResourcePath
+            }
+            if ($resource -eq "CollectorDown") {
+                $ResourcePath = $ResourceList[$resource]
+                $ResourcePath = $ResourcePath -replace "{id}", $PSBoundParameters["Id"]
+                return $ResourcePath
+            }
+            if ($resource -eq "DeviceGroupResources") {
                 $ResourcePath = $ResourceList[$resource]
                 $ResourcePath = $ResourcePath -replace "{id}", $PSBoundParameters["Id"]
                 return $ResourcePath
