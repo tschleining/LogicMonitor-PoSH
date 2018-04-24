@@ -37,7 +37,10 @@ function Get-LMData {
             $headers.Add("Authorization",$auth)
             $headers.Add("Content-Type",'application/json')
 
-
+            #check for windows and ensure TLS1.2
+            if ($ENV:OS -eq "Windows_NT") {
+                [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+            }
             $response = Invoke-RestMethod -Uri $url -Method $httpVerb -Header $headers
             if ($response.status -ne '200') {
                 throw $response.errmsg
