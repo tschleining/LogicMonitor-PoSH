@@ -10,6 +10,8 @@ An unofficial PowerShell module for managing a LogicMonitor instance
 * Add-LMDevice
 * Add-LMDeviceOneTimeSDT
 * Add-LMDeviceRepeatingSDT
+* Add-LMRole
+* Add-LMService
 * Add-LMServiceOneTimeSDT
 * Confirm-LMAlert
 * Confirm-LMCollectorDown
@@ -25,6 +27,7 @@ An unofficial PowerShell module for managing a LogicMonitor instance
 * Get-LMOpsNote
 * Get-LMRole
 * Get-LMService
+* Get-LMServiceAlert
 * Get-LMServiceSDT
 * Get-LMSMCheckPoint
 * Get-LMUnmonitoredDevice
