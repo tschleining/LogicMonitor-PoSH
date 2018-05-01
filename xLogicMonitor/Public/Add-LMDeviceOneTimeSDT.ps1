@@ -6,7 +6,7 @@
             [int]
             $deviceId,
             [Parameter(ParameterSetName="DeviceDisplayName", Mandatory=$true)]
-            $DeviceDisplayName,
+            $deviceDisplayName,
             [parameter(Mandatory=$true, ParameterSetName="DeviceID")]
             [parameter(Mandatory=$true, ParameterSetName="DeviceDisplayName")]
             [DateTime]
@@ -39,6 +39,7 @@
         #Add Epoch time to data object
         $data["startDateTime"] = $startDateEpoch
         $data["endDateTime"] = $endDateEpoch
+        write-host $data
         $dataJson = ConvertTo-Json $data
 
         $ResourcePath = Convert-LMResourcePath -resource $resource
