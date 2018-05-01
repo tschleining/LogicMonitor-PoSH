@@ -42,6 +42,6 @@
         $dataJson = ConvertTo-Json $data
 
         $ResourcePath = Convert-LMResourcePath -resource $resource
-        Submit-LMData -resourcePath $ResourcePath -Data $dataJson httpVerb POST
+        Submit-LMData -resourcePath $ResourcePath -Data $dataJson -httpVerb POST
         #submit-LMdata -resource $resource -Data $data
     }
