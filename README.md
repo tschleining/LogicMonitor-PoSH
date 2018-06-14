@@ -38,12 +38,8 @@ An unofficial PowerShell module for managing a LogicMonitor instance
 * Update-LMCollectorGroup
 
 # Installing the Module
-There are a couple of locations the module can be installed.
-
-* **Current User** %UserProfile%\Documents\WindowsPowerShell\Modules
-* **Machine Wide** %ProgramFiles%\WindowsPowerShell\Modules
-
-To install the module, click the 'Clone or Download' and then click 'Download ZIP', buttons on this page.  Open the ZIP file and copy the xLogicMonitor folder into one of the above locations.  Next run 'Import-Module xLogicMonitor'.  To find available commands run 'Get-Command -Module xLogicMonitor'.
+This module can now, and should, be installed using 'install-module xLogicMonitor' which will download the module from the [PowerShell Gallery](https://www.powershellgallery.com/).
+Next run 'Import-Module xLogicMonitor'.  To find available commands run 'Get-Command -Module xLogicMonitor'.
 
 
 # Obtaining API Keys
